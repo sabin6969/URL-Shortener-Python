@@ -35,20 +35,19 @@ def shorten():
                 shorten_link_entry.place(x=120,y=90,width=400,height=20)
                 shorten_link_entry.insert(0,str(short_link))
                 def copy_link():
-                    if len(shorten_link_entry.get())==0:
-                        messagebox.showerror("Empty","Nothing to Copy")
-                    else:
+                    if shorten_link_entry.get():
                         clipboard.copy(short_link)
                         messagebox.showinfo("Copied","Link Copied")
-                        shorten_link_entry.delete(0,tk.END)
+                    else:
+                        messagebox.showerror("Empty","Nothing to Copy")
                 copy_link_button=ttk.Button(root,text="Copy Shorten Link" ,command=copy_link)
                 copy_link_button.place(x=260,y=120)
             except:
-                messagebox.showwarning("Timeout","Connection Time Out")
+                messagebox.showerror("Error","Connection Timeout or Slow internet or No internet")
         else:
             messagebox.showerror("Invalid URL","Provide a Valid URL")
             source_url_entry.delete(0,tk.END)
-#clear input field buttons
+#clear input field button
 def clear():
     source_url_entry.delete(0,tk.END)
 def paste_url():
